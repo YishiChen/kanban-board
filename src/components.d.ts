@@ -12,12 +12,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    ListComponent: typeof import('./components/ListComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Task: typeof import('./mo./components/ListComponent.vue]
     TaskCard: typeof import('./components/TaskCard.vue')['default']
-    TaskFile: typeof import('./components/ListComponent.vue')['default']
-    TaskList: typeof import('./components/TaskList.vue')['default']
   }
 }
