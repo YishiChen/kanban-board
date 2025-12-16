@@ -3,12 +3,13 @@
 
     <v-card
         class="mb-4"
-        color="black"
+        color="green-lighten-3"
         image=""
         prepend-icon=""
         rounded="lg"
-        variant="tonal"
+        variant="elevated"
         min-height="120"
+        onmouseover="cursor"
         
         >
 
