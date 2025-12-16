@@ -6,10 +6,11 @@ import type { st } from "vue-router/dist/router-CWoNjPRp.mjs"
     description?: string
     isEditing: boolean = false
 
-    constructor(id: number, title: string, description?: string) {
+    constructor(id: number, title: string, description?: string, isEditing?: boolean) {
       this.id = id
       this.title = title
       this.description = description || ''
+      this.isEditing = isEditing || false
     }
   }
 
@@ -22,8 +23,8 @@ import type { st } from "vue-router/dist/router-CWoNjPRp.mjs"
       this.name = name
     }
 
-    addTask(id: number, Title?: string, Description?: string) {
-      this.tasks.push(new Task(id, Title || 'New Task', Description || 'Description here'))
+    addTask(id: number, Title?: string, Description?: string, isEditing?: boolean) {
+      this.tasks.push(new Task(id, Title || 'New Task', Description || 'Description here', isEditing))
     }
 
     removeTask(id: number) {

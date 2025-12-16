@@ -1,20 +1,29 @@
 <template>
  
   <v-app>
-    <v-main>
-      <v-container class="fill-height bg-grey-lighten-5" max-width="1200" >
+    <v-main class="bg-grey-lighten-3">
+      <h1 class="text-center my-4">Kanban Board</h1>
+
+      <h3 class="text-center mb-6">The kanban-board below features dragability and editing capabilities</h3>
+      <v-container fluid class=" fill-height align-start", width="1200">
+
+        
         <div class="mx-auto">
           <v-row> 
-            <v-col v-for="category in [todos, progress, dones]" cols="4" >
+            <v-col v-for="category in [todos, progress, dones]" cols="4" md=4 min-width="250" >
+              <v-sheet
+              class="bg-white rounded-lg pa-4"
+              elevation="1"
+              width="300"
+              >
               <h2>{{category.name}}</h2>
 
                <draggable 
                 group="tasks" 
-                class="h-100 bg-grey-lighten-4"
+                class="h-100"
                 v-model="category.tasks"
                 item-key="id"
-                animation="300"
-
+                animation="250"
                 > 
                
                 <template #item="{element}">
@@ -27,18 +36,13 @@
 
                 <template #footer>
                   <div class="btn-group list-group-item" role="group">
-                    <button class="btn btn-secondary" @click="() => category.addTask(globalId++) ">Add</button>
+                    <v-btn  @click="() => category.addTask(globalId++, '', '', true) ">+</v-btn>
                   </div>
                 </template>
-
               </draggable>
+            </v-sheet>
             </v-col>
           </v-row>  
-          <v-row> 
-            <v-list >
-            {{ todos.tasks }}
-            </v-list>
-          </v-row>
         </div>
       </v-container>
     </v-main>

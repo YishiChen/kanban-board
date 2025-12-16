@@ -8,6 +8,8 @@
         prepend-icon=""
         rounded="lg"
         variant="tonal"
+        min-height="120"
+        
         >
 
         <template #title>
