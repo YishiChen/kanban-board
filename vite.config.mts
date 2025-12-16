@@ -8,12 +8,11 @@ import VueRouter from 'unplugin-vue-router/vite'
 // Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
-
+  
 // https://vitejs.dev/config/
 export default defineConfig({
   build: { outDir: './docs' },
-  // needed for github pages just put the repo name here
-  base: '/kanban-board/', 
+  base: '/kanban-board/',
   plugins: [
     VueRouter({
       dts: 'src/typed-router.d.ts',
