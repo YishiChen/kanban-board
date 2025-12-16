@@ -16,7 +16,7 @@
               elevation="1"
               width="300"
               >
-              <h2>{{category.name}}</h2>
+              <h2 class="mb-4">{{category.name}}</h2>
 
                <draggable 
                 group="tasks" 
@@ -62,12 +62,12 @@
   const dones = ref(new TaskList('Done'))
   
   todos.value.addTask(globalId++, 'Sample Task 1', 'This is a sample task description.')
-  todos.value.addTask(globalId++, 'Sample Task 2', 'This is a sample task description.')
-  todos.value.addTask(globalId++, 'Sample Task 3', 'This is a sample task description.')
+  todos.value.addTask(globalId++, 'Sample Task 2', 'This description is short.')
+  todos.value.addTask(globalId++, 'Sample Task 3', 'This description is long because it has more words and is longer.')
 
   progress.value.addTask(globalId++, 'Sample Task 4', 'This is another sample task description.')
-  progress.value.addTask(globalId++, 'Sample Task 5', 'This is lol sample task description.')
-  progress.value.addTask(globalId++, 'Sample Task 6', 'asdasd.')
+  progress.value.addTask(globalId++, 'Sample Task 5', 'This description is long because it has more words and is longer.')
+  progress.value.addTask(globalId++, 'Sample Task 6', 'This description is short.')
 
   dones.value.addTask(globalId++, 'Sample Task 7', 'This is another sample task description.')
 

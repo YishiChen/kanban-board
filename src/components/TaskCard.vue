@@ -2,7 +2,7 @@
 <template>
 
     <v-card
-        class="mb-2"
+        class="mb-4"
         color="black"
         image=""
         prepend-icon=""
