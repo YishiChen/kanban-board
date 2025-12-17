@@ -10,9 +10,7 @@
         variant="elevated"
         min-height="120"
         onmouseover="cursor"
-        
         >
-
         <template #title>
 
             <h2 v-if="!props.task.isEditing" class="text-h5 font-weight-bold">

@@ -6,11 +6,22 @@ import Fonts from 'unplugin-fonts/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 
 // Utilities
-import { defineConfig } from 'vite'
+import { defineConfig, EnvironmentModuleGraph } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
   
 // https://vitejs.dev/config/
 export default defineConfig({
+
+  test: {
+    environment: 'happy-dom',
+    css: true,
+    server: {
+      deps: {
+        inline: ['vuetify'],
+      },
+    },
+  },
+
   build: { outDir: './docs' },
   base: '/kanban-board/',
   plugins: [
