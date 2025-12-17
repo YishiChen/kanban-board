@@ -12,15 +12,6 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitejs.dev/config/
 export default defineConfig({
 
-  test: {
-    environment: 'happy-dom',
-    css: true,
-    server: {
-      deps: {
-        inline: ['vuetify'],
-      },
-    },
-  },
 
   build: { outDir: './docs' },
   base: '/kanban-board/',

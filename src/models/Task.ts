@@ -1,16 +1,20 @@
 import type { st } from "vue-router/dist/router-CWoNjPRp.mjs"
 
+  export interface TaskOptions{
+    title?: string
+    description?: string
+  }
+
   export class Task {
+    static currentId: number = 1
     id: number
     title: string
-    description?: string
-    isEditing: boolean = false
+    description: string
 
-    constructor(id: number, title: string, description?: string, isEditing?: boolean) {
-      this.id = id
-      this.title = title
-      this.description = description || ''
-      this.isEditing = isEditing || false
+    constructor(options: TaskOptions) {
+      this.id = Task.currentId++
+      this.title = options.title || 'New Task'
+      this.description = options.description || 'This is a sample description'
     }
   }
 
@@ -23,8 +27,10 @@ import type { st } from "vue-router/dist/router-CWoNjPRp.mjs"
       this.name = name
     }
 
-    addTask(id: number, Title?: string, Description?: string, isEditing?: boolean) {
-      this.tasks.push(new Task(id, Title || 'New Task', Description || 'Description here', isEditing))
+    addTask(options: TaskOptions) {
+      const newTask = new Task(options);
+      this.tasks.push(newTask);
+      return newTask;
     }
 
     removeTask(id: number) {

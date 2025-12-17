@@ -10,7 +10,7 @@
         
         <div class="mx-auto">
           <v-row> 
-            <v-col v-for="category in [todos, progress, dones]" cols="4" md=4 min-width="250" >
+            <v-col v-for="category in categories" cols="4" md=4 min-width="250" >
               <v-sheet
               class="bg-white rounded-lg pa-4"
               elevation="1"
@@ -27,16 +27,16 @@
                 > 
                
                 <template #item="{element}">
-                  <task-card :task="element" 
+                  <task-card :task="element" :isEditing="isTaskEditing(element.id)"
                   @delete-task="(id: number) => category.removeTask(id)" 
-                  @edit-task="(id: number) => element.isEditing = true"
-                  @save-task="() => element.isEditing = false"
+                  @edit-task="(id: number) => setTaskEditing(element.id)"
+                  @save-task="() => setTaskEditing(null)"
                   />
                 </template> 
 
                 <template #footer>
                   <div class="btn-group list-group-item" role="group">
-                    <v-btn  @click="() => category.addTask(globalId++, '', '', true) ">+</v-btn>
+                    <v-btn  @click="() => addTaskAndEdit(category)">+</v-btn>
                   </div>
                 </template>
               </draggable>
@@ -50,28 +50,39 @@
 </template>
 
 <script setup lang="ts">
-  //  
 
-  import { ref } from 'vue'
+  import { reactive, ref } from 'vue'
   import draggable from 'vuedraggable'
   import { Task, TaskList } from './models/Task.ts'
 
-  let globalId = 0
-  const todos = ref(new TaskList('To Do'))
-  const progress = ref(new TaskList('In Progress'))
-  const dones = ref(new TaskList('Done'))
+  const editingTaskId = ref<number | null>(null)
+  const isTaskEditing = (id: number) => editingTaskId.value === id
+  const setTaskEditing = (id: number | null) => {
+    editingTaskId.value = id
+  }
+  const addTaskAndEdit = (category: TaskList) => {
+    const newTask = category.addTask({})
+    editingTaskId.value = newTask.id
+  }
+
   
-  todos.value.addTask(globalId++, 'Sample Task 1', 'This is a sample task description.')
-  todos.value.addTask(globalId++, 'Sample Task 2', 'This description is short.')
-  todos.value.addTask(globalId++, 'Sample Task 3', 'This description is long because it has more words and is longer.')
 
-  progress.value.addTask(globalId++, 'Sample Task 4', 'This is another sample task description.')
-  progress.value.addTask(globalId++, 'Sample Task 5', 'This description is long because it has more words and is longer.')
-  progress.value.addTask(globalId++, 'Sample Task 6', 'This description is short.')
+  const todos = new TaskList('To Do')
+  const progress = new TaskList('In Progress')
+  const done = new TaskList('Done')
 
-  dones.value.addTask(globalId++, 'Sample Task 7', 'This is another sample task description.')
+  todos.addTask({title: 'Sample Task 1', description: 'This is a sample task description.'})
+  todos.addTask({title: 'Sample Task 2', description: 'This description is short.'})
+  todos.addTask({title: 'Sample Task 3', description: 'This description is long because it has more words and is longer.'})
+  
+  progress.addTask({title: 'Sample Task 4', description: 'This is another sample task description.'})
+  progress.addTask({title: 'Sample Task 5', description: 'This description is long because it has more words and is longer.'})
+  progress.addTask({title: 'Sample Task 6', description: 'This description is short.'})
 
+  done.addTask({title: 'Sample Task 7', description: 'This is another sample task description.'})
+  done.addTask({title: 'Sample Task 8', description: 'This description is short.'})
 
+  const categories = reactive([todos, progress, done])
 
 </script>
 
