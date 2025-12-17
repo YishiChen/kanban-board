@@ -5,7 +5,7 @@
       <h1 class="text-center my-4">Kanban Board</h1>
 
       <h3 class="text-center mb-6">The kanban-board below features dragability and editing capabilities</h3>
-      <v-container fluid class=" fill-height align-start", width="1200">
+      <v-container fluid class=" fill-height align-start" width="1200">
 
         
         <div class="mx-auto">
